@@ -1,8 +1,9 @@
 var mainWord = generateWord();
-var test = hideWord(mainWord);
-document.getElementById("displayWord").innerHTML = test;
+var undersc = hideWord(mainWord);
+document.getElementById("displayWord").innerHTML = undersc;
  
 console.log(mainWord);
+
 
 
 
@@ -38,15 +39,32 @@ function replaceLetter(y)
   {
         y = y.toLowerCase();    
         
-        // console.log("n " + n);
-        // console.log("mW "+ mainWord);       
-        var wordArray = test.split("");
-        var n = mainWord.search(y);
-        // console.log(wordArray);
-        wordArray[n] = y;
-        // console.log(wordArray);
-        var newHidden = wordArray.join("");
-        document.getElementById("displayWord").innerHTML = newHidden.toUpperCase();
-        test = newHidden
-  }
+        var underscArray = undersc.split("");
+        console.log("underscarray split " + underscArray);
+       
+        var mainWordArray = mainWord.split("");
+        console.log("mainword split   " + mainWordArray);
+        console.log("---" + mainWordArray[3]);
 
+        for (var j=0; j < mainWord.length; j++) {
+            
+            console.log("aa" + mainWordArray[j]);
+            var x = mainWordArray[j];
+            console.log("***  " + x + "  " + y);
+          if(x === y) {
+            console.log("bb" + mainWordArray[j]);
+            underscArray[j] = y;
+            // console.log("if " + underscArray);
+            console.log("cc" + mainWordArray[j]);
+            console.log(y);
+          }
+
+        }
+        // console.log(wordArray);
+        
+        // console.log(wordArray);
+        var newHidden = underscArray.join("");
+        document.getElementById("displayWord").innerHTML = newHidden.toUpperCase();
+        undersc = newHidden
+  }
+  
