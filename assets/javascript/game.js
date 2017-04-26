@@ -1,3 +1,5 @@
+
+var wordlist = ["concatenation", "polymorphism", "encapsulation", "scope"];
 var mainWord = generateWord();
 var underScores = hideWord(mainWord);
 var lettersMissed = [];
@@ -24,6 +26,7 @@ function playgame()
         if (guesses == 5)
           {
             document.getElementById("displayLetter").innerHTML = "You Lose!  Hit any key to start again";
+            document.getElementById("instruction").innerHTML = "You Lose!  Hit any key to start again";
             
             losses++;
             document.getElementById("gamestats").innerHTML = "Wins:  " + wins + "    " + "Losses:  " + losses;
@@ -64,7 +67,7 @@ function reloadGame()
 
 function generateWord()
   {
-    var wordlist = ["concatenation", "polymorphism", "encapsulation"];
+    // var wordlist = ["concatenation", "polymorphism", "encapsulation"];
     var index = Math.floor(Math.random() * wordlist.length);
     return wordlist[index];
   }
@@ -101,7 +104,7 @@ function replaceLetter(y)
       }
     document.getElementById("displayWord").innerHTML = newHidden.toUpperCase();
     document.getElementById("numberOfMisses").innerHTML = "Number of Missed Letters: " + guesses;
-    document.getElementById("missedLetters").innerHTML = lettersMissed;
+    document.getElementById("missedLetters").innerHTML = "Letters Missed: " + lettersMissed;
     underScores = newHidden;
   }
   

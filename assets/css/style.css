@@ -1,3 +1,43 @@
 #displayWord {
 	letter-spacing: 20px;
 }
+
+.jumbotron {
+	color: white;
+	letter-spacing: 3px;
+	background: rgba(200, 54, 54, 0.01); 
+	
+}
+
+body { 
+	font-family: 'Ultra', serif;
+	/*letter-spacing: 10px;*/
+	padding-top: 190px;
+	background-image: url('../images/fistful.jpg'); 
+	background-size: 2350px 1000px;
+ 	background-repeat:no-repeat;
+ 	color: white;
+	
+}
+
+.navbar {
+	letter-spacing: 5px;
+	color: white;
+	background-color: black;
+	background-image: url('assets/images/fistful.jpg'); 
+}
+
+.score {
+	float: right;
+}
+
+#gamestats {
+	float: right;
+	/*width: 40%;*/
+}
+
+#hangman {
+
+	/*background-color: white;*/
+	/*width: 30%;*/
+}
