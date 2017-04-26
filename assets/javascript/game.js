@@ -1,5 +1,6 @@
 var mainWord = generateWord();
 var underScores = hideWord(mainWord);
+var lettersMissed = [];
 
 var tries = 5;
 var guesses = 0;
@@ -18,14 +19,25 @@ function startover()
 
 function playgame()
   {
-    document.getElementById("displayWord").innerHTML = underScores;
-    document.getElementById("instruction").innerHTML = "Guess a Letter";
-    document.onkeyup = function(event)
-    {
-      var letterGuessed = event.key;
-      document.getElementById("displayLetter").innerHTML = letterGuessed.toUpperCase();
-      replaceLetter(letterGuessed);
-    }
+     
+        document.getElementById("displayWord").innerHTML = underScores;
+        document.getElementById("instruction").innerHTML = "Guess a Letter - Miss 5 and You Lose!";
+        document.onkeyup = function(event)
+          {
+            var letterGuessed = event.key;
+            document.getElementById("displayLetter").innerHTML = letterGuessed.toUpperCase();
+            replaceLetter(letterGuessed);
+            if (guesses == 5)
+              {
+                  document.getElementById("instruction2").innerHTML = "You Lose!";
+              }
+            if(mainWord === underScores)
+              {
+                  document.getElementById("instruction2").innerHTML = "You Win!";
+              }
+          }
+      
+    
   }
 
 
@@ -54,7 +66,7 @@ function replaceLetter(y)
     var underscArray = underScores.split("");
               
     var mainWordArray = mainWord.split("");
-        
+    
     for (var j=0; j < mainWord.length; j++) 
       {
         var x = mainWordArray[j];
@@ -66,12 +78,17 @@ function replaceLetter(y)
       }
     
     var newHidden = underscArray.join("");
+    
     if(underScores === newHidden)
-    {
-      guesses++;
-    }
+      {
+        y = y.toUpperCase();
+        guesses++;
+        lettersMissed.push(y);
+      }
+    
     document.getElementById("displayWord").innerHTML = newHidden.toUpperCase();
     document.getElementById("numberOfMisses").innerHTML = "Number of Missed Letters: " + guesses;
+    document.getElementById("missedLetters").innerHTML = lettersMissed;
     underScores = newHidden;
   }
   
