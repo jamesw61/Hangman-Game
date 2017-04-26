@@ -1,46 +1,66 @@
 var mainWord = generateWord();
 var underScores = hideWord(mainWord);
 var lettersMissed = [];
-
-var tries = 5;
 var guesses = 0;
+var wins = 0;
+var losses = 0;
 
-startover();
 
-
-function startover()
+document.onkeyup = function(event)
   {
-    document.onkeyup = function(event)
-    {
-      playgame();
-    }
+    playgame();
   }
-
 
 function playgame()
   {
-     
-        document.getElementById("displayWord").innerHTML = underScores;
-        document.getElementById("instruction").innerHTML = "Guess a Letter - Miss 5 and You Lose!";
-        document.onkeyup = function(event)
+    document.getElementById("displayWord").innerHTML = underScores;
+
+    document.getElementById("instruction").innerHTML = "Guess a Letter - Miss 5 and You Lose!";
+    document.onkeyup = function(event)
+      {
+        var letterGuessed = event.key;
+        document.getElementById("displayLetter").innerHTML = letterGuessed.toUpperCase();
+        replaceLetter(letterGuessed);
+        if (guesses == 5)
           {
-            var letterGuessed = event.key;
-            document.getElementById("displayLetter").innerHTML = letterGuessed.toUpperCase();
-            replaceLetter(letterGuessed);
-            if (guesses == 5)
+            document.getElementById("displayLetter").innerHTML = "You Lose!  Hit any key to start again";
+            
+            losses++;
+            document.getElementById("gamestats").innerHTML = "Wins:  " + wins + "    " + "Losses:  " + losses;
+            document.onkeyup = function(event)
               {
-                  document.getElementById("instruction2").innerHTML = "You Lose!";
+                reloadGame();
               }
-            if(mainWord === underScores)
+                  
+          }
+        if(mainWord === underScores)
+          {
+            document.getElementById("displayLetter").innerHTML = "You Win!  Hit any key to start again";
+            
+            wins++;
+            document.getElementById("gamestats").innerHTML = "Wins:  " + wins + "    " + "Losses:  " + losses;
+            document.onkeyup = function(event)
               {
-                  document.getElementById("instruction2").innerHTML = "You Win!";
+                reloadGame();
               }
           }
-      
-    
+      }
   }
 
-
+function reloadGame()
+  {
+    mainWord = generateWord();
+    underScores = hideWord(mainWord);
+    lettersMissed = [];
+    guesses = 0;
+    document.getElementById("displayWord").innerHTML = underScores;
+    document.getElementById("instruction").innerHTML = "Guess a Letter - Miss 5 and You Lose!";
+    document.getElementById("displayLetter").innerHTML = "";
+    document.getElementById("numberOfMisses").innerHTML = "";
+    document.getElementById("missedLetters").innerHTML = "";
+    document.getElementById("instruction2").innerHTML = "";
+    playgame();
+  }
 
 function generateWord()
   {
@@ -56,36 +76,29 @@ function hideWord(word)
       {
        hiddenWord = hiddenWord + "_";
       }
-        return hiddenWord;
+    return hiddenWord;
   }
 
 function replaceLetter(y)
   {
     y = y.toLowerCase();    
-        
     var underscArray = underScores.split("");
-              
     var mainWordArray = mainWord.split("");
-    
     for (var j=0; j < mainWord.length; j++) 
       {
         var x = mainWordArray[j];
         if(x === y) 
         {
           underscArray[j] = y;
-          
         }
       }
-    
     var newHidden = underscArray.join("");
-    
     if(underScores === newHidden)
       {
         y = y.toUpperCase();
         guesses++;
         lettersMissed.push(y);
       }
-    
     document.getElementById("displayWord").innerHTML = newHidden.toUpperCase();
     document.getElementById("numberOfMisses").innerHTML = "Number of Missed Letters: " + guesses;
     document.getElementById("missedLetters").innerHTML = lettersMissed;
