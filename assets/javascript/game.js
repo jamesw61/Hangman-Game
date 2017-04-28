@@ -1,5 +1,5 @@
 
-var wordlist = ["concatenation", "polymorphism", "encapsulation", "scope"];
+var wordlist = ["concatenation", "polymorphism", "encapsulation", "scope", "lexical"];
 var mainWord = generateWord();
 var underScores = hideWord(mainWord);
 var lettersMissed = [];
@@ -9,14 +9,14 @@ var losses = 0;
 
 
 document.onkeyup = function(event)
-  {
-    playgame();
+  { 
+    playGame();
   }
 
-function playgame()
+function playGame()
   {
+    playMusic();
     document.getElementById("displayWord").innerHTML = underScores;
-
     document.getElementById("instruction").innerHTML = "Guess a Letter - Miss 5 and You Lose!";
     document.onkeyup = function(event)
       {
@@ -34,7 +34,6 @@ function playgame()
               {
                 reloadGame();
               }
-                  
           }
         if(mainWord === underScores)
           {
@@ -62,12 +61,11 @@ function reloadGame()
     document.getElementById("numberOfMisses").innerHTML = "";
     document.getElementById("missedLetters").innerHTML = "";
     document.getElementById("instruction2").innerHTML = "";
-    playgame();
+    playGame();
   }
 
 function generateWord()
   {
-    // var wordlist = ["concatenation", "polymorphism", "encapsulation"];
     var index = Math.floor(Math.random() * wordlist.length);
     return wordlist[index];
   }
@@ -108,3 +106,8 @@ function replaceLetter(y)
     underScores = newHidden;
   }
   
+function playMusic()
+  {
+    document.getElementById("sixty").style.display = "block";
+    sixty.play();
+  }

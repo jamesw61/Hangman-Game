@@ -13,8 +13,13 @@ body {
 	font-family: 'Ultra', serif;
 	/*letter-spacing: 10px;*/
 	padding-top: 190px;
+	background-color: black;
 	background-image: url('../images/fistful.jpg'); 
-	background-size: 2350px 1000px;
+	background-size: 100%;
+
+	/*background-size: 2210px 940px;*/
+	/*background-size:contain;*/
+	/*background-position:center;*/
  	background-repeat:no-repeat;
  	color: white;
 	
@@ -24,7 +29,7 @@ body {
 	letter-spacing: 5px;
 	color: white;
 	background-color: black;
-	background-image: url('assets/images/fistful.jpg'); 
+	 
 }
 
 .score {
@@ -36,8 +41,15 @@ body {
 	/*width: 40%;*/
 }
 
-#hangman {
 
-	/*background-color: white;*/
-	/*width: 30%;*/
+footer {
+	background-color: black;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+}
+
+#sixty {
+	display: none;
 }
