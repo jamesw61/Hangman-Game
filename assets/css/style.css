@@ -29,12 +29,8 @@ body {
 	letter-spacing: 5px;
 	color: white;
 	background-color: black;
-<<<<<<< HEAD
-	 
-=======
-	
->>>>>>> 7bea1d412748c9b1968527abc6b11b0532ceea0a
 }
+
 
 .score {
 	float: right;
@@ -46,7 +42,6 @@ body {
 }
 
 
-<<<<<<< HEAD
 footer {
 	background-color: black;
 	position: absolute;
@@ -58,8 +53,5 @@ footer {
 #sixty {
 	display: none;
 }
-=======
-	/*background-color: white;*/
-	/*width: 30%;*/
-}
->>>>>>> 7bea1d412748c9b1968527abc6b11b0532ceea0a
+
+
